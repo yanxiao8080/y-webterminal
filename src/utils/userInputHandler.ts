@@ -1,7 +1,7 @@
-import { SystemInfo } from "../index";
+import {SystemInfo} from "../index";
 import WebTerminal from "./terminal";
 import Render from "./render";
-import UserInput from "../widget/userInput";
+import UserLog from "../widget/userLog";
 import CmdHistory from "../utils/cmdHistory";
 
 
@@ -22,17 +22,17 @@ export default class UserInputHandler {
     private renderHandler: Render,
   ) {
     this.cmdHistory = new CmdHistory(this.webTerminal.options.historyLength)
-    this.systemStr = UserInput.formatSystemInfo(this.webTerminal.systemInfo);
+    this.systemStr = UserLog.formatSystemInfo(this.webTerminal.systemInfo);
   }
 
   setSystemStr(systemInfo: SystemInfo) {
     this.webTerminal.systemInfo = systemInfo;
-    this.systemStr = UserInput.formatSystemInfo(systemInfo);
+    this.systemStr = UserLog.formatSystemInfo(systemInfo);
     this.renderHandler.updateSystemInfo(this.systemStr);
   }
 
   setUserRow(el: HTMLElement) {
-    this.renderHandler.setUserInput(this.systemStr);
+    this.renderHandler.setUserRow(this.systemStr);
     el.addEventListener("click", this.focus.bind(this))
     this.renderHandler.input?.addEventListener("input", this.onInput.bind(this))
 
@@ -74,12 +74,13 @@ export default class UserInputHandler {
     // 当光标存在选中的字符时，将光标宽度设为字符宽度
     if (cursorText.length && this.renderHandler.cursorChar) {
       this.renderHandler.cursorChar.style.width = "auto";
-    } else if (!cursorText.length && this.renderHandler.cursorChar) {
+    } else if(!cursorText.length && this.renderHandler.cursorChar) {
       this.renderHandler.cursorChar.style.width = "";
     }
   }
 
   onkeydown(e: any) {
+    // console.log("onkeydown", e.keyCode, e)
     switch (e.keyCode) {
       case 13:
       case 100:
@@ -112,12 +113,17 @@ export default class UserInputHandler {
         break;
       case 76:
         // 清空日志
-        if (e.ctrlKey) this.clearLog()
+        if(e.ctrlKey) this.clearLog()
         break;
       case 67:
         // 退出当前任务
-        if (e.ctrlKey) this.quitTask()
+        if(e.ctrlKey) this.quitTask()
         break;
+      case 9:
+        // tab自动补齐
+        e.preventDefault();
+        this.webTerminal.emitter.emit("tabulator", this.inputTextArr.join(""))
+        break
     }
   }
 
@@ -130,14 +136,15 @@ export default class UserInputHandler {
     const command = this.inputTextArr.join("");
     this.inputTextArr = [];
     this.cursor = 0;
+    this.webTerminal.clearHelpWidget()
     this.updateUserText();
     this.renderHandler.hiddenUserRow();
     this.renderHandler.scrollBottom();
     if (command.length) this.cmdHistory.push(command);
 
-    const userInput = new UserInput(this.webTerminal.systemInfo);
-    userInput.set(command);
-    this.renderHandler.appendUserHistory(userInput);
+    const userLog = new UserLog(this.webTerminal.systemInfo);
+    userLog.set(command);
+    this.renderHandler.appendUserHistory(userLog);
     this.webTerminal.emitter.emit("enter", {
       command: command,
       onQuit: (cb) => this.onQuitFuncList.push(cb),
@@ -162,6 +169,7 @@ export default class UserInputHandler {
   }
 
   leftArrow() {
+    console.log("leftArrow", this.cursor)
     if (this.cursor < 1) return;
     this.cursor--;
     this.updateUserText();

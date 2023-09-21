@@ -39,4 +39,6 @@ export default abstract class WidgetInter<S> {
   }
 
   abstract render(): string;
+
+  onMount() {}
 }

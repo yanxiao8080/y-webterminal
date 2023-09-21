@@ -1,12 +1,18 @@
 import WebTerminal from "./utils/terminal";
-import TableLog from "./widget/tableLog";
 import WidgetInter from "./utils/widgetInter";
+import UserLog from "./widget/userLog";
+import WebLog from "./widget/webLog";
+import TableLog from "./widget/tableLog";
+import ListLog from "./widget/listLog";
 
 
 export {
   WebTerminal,
+  WidgetInter,
+  UserLog,
+  WebLog,
   TableLog,
-  WidgetInter
+  ListLog
 }
 
 export interface Options {
@@ -30,6 +36,7 @@ export type Events = {
     onQuit: (cb: () => void) => void;
     offQuit: () => void;
   };
+  tabulator: string;
   focus: void;
   blur: void;
   quit: void;
@@ -39,7 +46,8 @@ export enum WidgetType {
   userInput,
   weblog,
   progress,
-  table
+  table,
+  list
 }
 
 export enum InnerType {

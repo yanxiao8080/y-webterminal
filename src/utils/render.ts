@@ -1,6 +1,6 @@
 import {InnerType, Options} from "../index";
 import WidgetInter from "src/utils/widgetInter";
-import UserInput from "src/widget/userInput";
+import UserLog from "src/widget/userLog";
 
 export default class Render {
   container: HTMLElement | null = null;
@@ -39,7 +39,7 @@ export default class Render {
     el.appendChild(this.webTerminal);
   }
 
-  appendRow(widget: WidgetInter<unknown>) {
+  createRow(widget: WidgetInter<unknown>) {
     const row = document.createElement("div");
     row.className = "shell-row";
     switch (widget.innerType) {
@@ -50,15 +50,30 @@ export default class Render {
         row.innerHTML = widget.render();
         break;
     }
+    return row;
+  }
+
+  appendRow(widget: WidgetInter<unknown>) {
+    const row = this.createRow(widget)
     if (this.userInputRow) {
-      this.webTerminal?.insertBefore(row, this.webTerminal!.lastChild)
+      this.webTerminal?.insertBefore(row, this.userInputRow)
     } else {
       this.webTerminal?.appendChild(row);
     }
+    widget.rowEl = row;
+    widget.onMount()
     return row
   }
 
-  appendUserHistory(userInput: UserInput) {
+  appendHelp(widget: WidgetInter<unknown>) {
+    const row = this.createRow(widget)
+    this.webTerminal?.appendChild(row);
+    widget.rowEl = row;
+    widget.onMount()
+    return row
+  }
+
+  appendUserHistory(userInput: UserLog) {
     const row = document.createElement("div");
     row.className = "shell-row";
     const systemInfo = document.createElement("span");
@@ -69,13 +84,15 @@ export default class Render {
     row.append(systemInfo, command)
 
     if (this.userInputRow) {
-      this.webTerminal?.insertBefore(row, this.webTerminal!.lastChild)
+      this.webTerminal?.insertBefore(row, this.userInputRow)
     } else {
       this.webTerminal?.appendChild(row);
     }
+    userInput.rowEl = row;
+    userInput.onMount()
   }
 
-  setUserInput(systemInfo: string = "") {
+  setUserRow(systemInfo: string = "") {
     this.userInputRow = document.createElement("div");
     this.userInputRow.id = "UserInputRow";
     this.userInputRow.className = "shell-row";

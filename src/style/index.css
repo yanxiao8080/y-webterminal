@@ -77,3 +77,15 @@
 .log-table-td {
 
 }
+
+.list-log {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.list-log > span {
+    display: inline-block;
+    padding-right: 8px;
+}

@@ -1,6 +1,6 @@
 ## 安装
 
-```
+```shell
 npm install y-webterminal
 ```
 
@@ -14,7 +14,7 @@ npm install y-webterminal
 
 向终端写入的每一行日志都是通过widget创建的，不同的widget输出不同。例如调用writeln方法使用的是weblog部件，用户输入使用的是userInput部件。内置的部件还有tablelog，他可以输出网格日志，当用户执行 ls 命令输出当前文件夹下所有文件信息时，使用tablelog很合适。当widget不满足要求时，开发者也可以自己拓展新的widget。
 
-##### systemInfo 
+##### systemInfo
 
 系统信息，由 `username`、`host`、`dir`、`mark` 构成，拼接后如 `user@localhost ~ #  `
 
@@ -123,9 +123,20 @@ webTerminal.on("quit" function() {
 })
 ```
 
+##### 监听用户输入tab自动补齐命令
 
-
-
+```typescript
+webTerminal.on("tabulator", function (command) {
+  console.log("command", command)
+  // 设置用户输入的内容
+  webTerminal.setUserInput(command + "new")
+  // 创建列表日志，显示提示的命令列表
+  const listLog = new ListLog()
+  listLog.set(["help", "publish", "run", "test", "build"])
+  // 写入提示
+  webTerminal.writeHelp(listLog)
+})
+```
 
 ## 写入
 
@@ -148,7 +159,7 @@ webTerminal.writeWidget(tableLog)
 
 ```typescript
 // 通过下标查询最后一行widget部件
-const row = webTerminal.getRow(webTerminal.rows.length - 1)
+const row = webTerminal.getRow(webTerminal.logs.length - 1)
 // 或者通过id查询
 const row = webTerminal.getRow(id)
 ```
@@ -165,18 +176,18 @@ if(row.type === WidgetType.weblog){
 
 ```typescript
 // 通过下标或id删除
-webTerminal.deleteRow(webTerminal.rows.length - 1)
+webTerminal.deleteRow(webTerminal.logs.length - 1)
 webTerminal.deleteRow(id)
 ```
 
 ## API
 
-WebTerminal 
+WebTerminal
 
 ##### 属性
 
 - systemInfo 系统信息
-- rows 所有日志
+- logs 所有日志
 - on 监听用户输入事件
 
 ##### 构造函数
@@ -200,12 +211,13 @@ render(el: HTMLElement);
 
 写入文本并换行
 
-```
-writeln(text: string, id?: string);
+```typescript
+writeln(text: string, id?: string): WebLog;
 ```
 
 - text 写入的内容
 - id 记录id，可通过id查找这一行
+- return 返回WebLog对象
 
 ##### writeWidget
 
@@ -216,6 +228,24 @@ writeWidget(widget: WidgetInter<unknown>);
 ```
 
 - widget 创建的widget对象，继承至WidgetInter
+
+##### writeHelp
+
+向用户输入行下面写入输入提示，例如用户按tab键获取输入提示
+
+```typescript
+writeHelp(widget: WidgetInter<unknown>)
+```
+
+- widget 创建的widget对象，继承至WidgetInter
+
+###### clearHelpWidget
+
+清空输入提示
+
+```typescript
+clearHelpWidget()
+```
 
 ##### getRow
 
@@ -245,6 +275,16 @@ deleteRow(cursor: number | string)
 ```typescript
 setSystemInfo(systemInfo: Partial<SystemInfo>)
 ```
+
+##### setUserInput
+
+设置用户输入框的内容
+
+```
+setUserInput(command: string)
+```
+
+- command 输入的内容
 
 ##### hiddenUserRow
 
@@ -294,6 +334,12 @@ setTheme(theme: string)
 - onQuit 监听退出事件
 - offQuit 取消监听退出，如果在enter事件中调用了onQuit方法，记得在合适的时机取消监听，否则多次enter事件重复监听退出事件
 
+##### tabulator
+
+用户输入 `tab` 制表符
+
+- command 输入的命令
+
 ## 类型
 
 ```typescript
@@ -318,6 +364,7 @@ export type Events = {
     onQuit: (cb: () => void) => void;
     offQuit: () => void;
   };
+  tabulator: string;
   focus: void;
   blur: void;
   quit: void;
@@ -386,25 +433,83 @@ const webTerminal = new WebTerminal({theme: "my-dark"});
 
 ## widget的使用及拓展
 
+- userLog  用户输入命令回车后，会将系统信息及输入的命令生成一条日志，追加到日志列表
+- webLog 普通的网络日志
+- tableLog 以表格的形式输出日志
+- listLog 以列表的形式输出日志
+
+##### webLog部件的使用
+
+```typescript
+// 直接调用
+webTerminal.writeln("hello world");
+// 或先创建webLog对象，再设置值，最后调用writeWidget写入
+const weblog = new WebLog();
+weblog.set("hello world");
+webTerminal.writeWidget(weblog);
+```
+
+set方法：
+
+```typescript
+set(value: string)
+```
+
 ##### tablelog部件的使用
 
 ```typescript
 // 创建widget
-const tableLog = new TableLog()
-	// 设置一个二维数组
-	tableLog.set([
-    ["yx", 18, "xz"],
-    ["gc", 17, "yz"],
-  ])
-	// 设置对象数组
-  tableLog.set([
-    {name: "yxx", age: 18, address: "xz"},
-    {name: "gcc", age: 17, address: "yz"}
-  ],[
-    {prop: "age", label: "年龄"},
-    {prop: "name", label: "姓名"},
-    {prop: "address", label: "地区", align: "right"}
-  ])
+const tableLog = new TableLog();
+// 设置一个二维数组
+tableLog.set([
+  ["yx", 18, "xz"],
+  ["gc", 17, "yz"],
+])
+// 设置对象数组
+tableLog.set([
+  {name: "yxx", age: 18, address: "xz"},
+  {name: "gcc", age: 17, address: "yz"}
+],[
+  {prop: "age", label: "年龄"},
+  {prop: "name", label: "姓名"},
+  {prop: "address", label: "地区", align: "right"}
+]);
+```
+
+set方法：
+
+```typescript
+interface Column{
+  prop: string;
+  label: string;
+  width?: string;
+  align?: string
+}
+set(value: Array<Array<keyof any>>): void;
+set(value: Array<Record<string, keyof any>>, columns: Array<Column>): void;
+```
+
+###### listLog部件的使用
+
+```typescript
+const listLog = new ListLog()
+// 参数为一个数组，数组中可以是字符串或者对象
+listLog.set([
+  "index.html", 
+  "index.ts", 
+  {
+    value: "static.ts",
+  	style: "color: red"
+	}
+])
+webTerminal.writeHelp(listLog)
+```
+
+set方法：
+
+```typescript
+// class: 元素的类名， style: 元素的样式
+set(value: Array<string | {value: string, class?: string, style?: string}>)
 ```
 
 ##### 拓展
@@ -412,17 +517,20 @@ const tableLog = new TableLog()
 当widget不满足要求时，或开发者想拓展新的widget时，可通过继承WidgetInter抽象类来开发自己的widget，所有widget都是继承至WidgetInter
 
 ```typescript
-abstract class WidgetInter<S> {
+export default abstract class WidgetInter<S> {
+  // wedget的唯一标识
   id: string;
 
-  // widget 类型
+  // wedget的类型，拓展时可以是string类型
   abstract type: WidgetType | string;
 
-  // 以哪种形式插入的页面，InnerType.text 文本, InnerType.html html字符串
+  // 以哪种方式插入到节点，文本或html字符串
   abstract innerType: InnerType;
 
+  // 数据
   value?: S;
 
+  // 插入的dom节点
   rowEl: HTMLDivElement | null = null;
 
   protected constructor(id?: string) {
@@ -438,7 +546,7 @@ abstract class WidgetInter<S> {
     this.updateInner()
   };
 
-  // updateInner方法调用render获取字符串，根据innerType来插入到页面上
+  // 更新dom节点
   updateInner() {
     if (!this.rowEl) return;
     switch (this.innerType) {
@@ -450,15 +558,20 @@ abstract class WidgetInter<S> {
         break;
     }
   }
-	// render方法应该返回一个字符串，该字符串会被插入的页面中，如果想渲染html字符串，则需要将innerType设置为InnerType.html
+
+  // 每次插入或om节点都会调用render函数，它应该返回一个字符串。当innerType为InnerType.html时，可以返回html字符串。
   abstract render(): string;
+
+  // 当dom节点插入到文本后调用onMount，此时可以访问rowEl
+  onMount() {}
 }
+
 ```
 
 例如weblog部件
 
 ```typescript
-export default class Weblog extends WidgetInter<string> {
+export default class WebLog extends WidgetInter<string> {
   type: WidgetType = WidgetType.weblog;
 
   innerType: InnerType = InnerType.text;

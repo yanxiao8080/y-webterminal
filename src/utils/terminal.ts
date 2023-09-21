@@ -2,7 +2,7 @@ import mitt, {Emitter} from "mitt";
 import WidgetInter from "./widgetInter";
 import Render from "./render";
 import UserInputHandler from "./userInputHandler";
-import Weblog from "../widget/weblog";
+import WebLog from "../widget/webLog";
 import {Events, Options, SystemInfo} from "../index";
 
 export default class WebTerminal {
@@ -17,7 +17,9 @@ export default class WebTerminal {
     mark: "#"
   }
 
-  rows: Array<WidgetInter<unknown>> = [];
+  logs: Array<WidgetInter<unknown>> = [];
+
+  helpWidgetList: Array<WidgetInter<unknown>> = []
 
   private readonly renderHandler: Render;
 
@@ -32,46 +34,56 @@ export default class WebTerminal {
   render(el: HTMLElement) {
     this.renderHandler.render(el)
     this.userHandler.setUserRow(el)
-    this.rows.forEach((widget) => {
-      widget.rowEl = this.renderHandler.appendRow(widget);
+    this.logs.forEach((widget) => {
+      this.renderHandler.appendRow(widget);
     })
   }
 
   // 写入并换行
   writeln(text: string, id?: string) {
-    const weblog = new Weblog(id);
+    const weblog = new WebLog(id);
     weblog.set(text)
-    this.rows.push(weblog);
-    weblog.rowEl = this.renderHandler.appendRow(weblog);
+    this.logs.push(weblog);
+    this.renderHandler.appendRow(weblog);
     return weblog;
   }
 
   writeWidget(widget: WidgetInter<unknown>) {
-    this.rows.push(widget);
-    widget.rowEl = this.renderHandler.appendRow(widget);
+    this.logs.push(widget);
+    this.renderHandler.appendRow(widget);
+  }
+
+  writeHelp(widget: WidgetInter<unknown>) {
+    this.helpWidgetList.push(widget)
+    this.renderHandler.appendHelp(widget);
+  }
+
+  clearHelpWidget() {
+    this.helpWidgetList.forEach((widget) => widget.rowEl.remove())
+    this.helpWidgetList = []
   }
 
   // 获取指定行文本对象
   getRow(cursor: number | string): WidgetInter<unknown> | null {
     if (typeof cursor === "number"){
-      return this.rows[cursor] || null;
+      return this.logs[cursor] || null;
     } else {
-      return this.rows.find((item) => item.id === cursor) || null;
+      return this.logs.find((item) => item.id === cursor) || null;
     }
   }
 
   deleteRow(cursor: number | string) {
     if (typeof cursor === "number") {
-      const widget = this.rows[cursor]
-      if (this.rows[cursor]){
-        this.rows.splice(cursor, 1);
+      const widget = this.logs[cursor]
+      if (this.logs[cursor]){
+        this.logs.splice(cursor, 1);
         widget.rowEl?.remove();
       }
     } else {
-      const idx = this.rows.findIndex((item) => item.id === cursor);
+      const idx = this.logs.findIndex((item) => item.id === cursor);
       if(idx !== -1) {
-        this.rows.splice(idx, 1);
-        this.rows[idx].rowEl?.remove();
+        this.logs.splice(idx, 1);
+        this.logs[idx].rowEl?.remove();
       }
     }
   }
@@ -79,6 +91,10 @@ export default class WebTerminal {
   setSystemInfo(systemInfo: Partial<SystemInfo>) {
     this.systemInfo = Object.assign(this.systemInfo, systemInfo);
     this.userHandler.setSystemStr(this.systemInfo);
+  }
+
+  setUserInput(command: string) {
+    this.userHandler.setUserInput(command)
   }
 
   hiddenUserRow() {
