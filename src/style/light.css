@@ -1,0 +1,9 @@
+.light {
+    --web-term-bg: #fafafa;
+    --primary-color: #212121;
+    --font-size: 12px;
+    --cursor-color: rgba(173, 173, 173, 0.8);
+    --host-color: --primary-color;
+    --dir-color: --primary-color;
+    --mark-color: --primary-color;
+}

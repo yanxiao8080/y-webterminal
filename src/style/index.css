@@ -1,0 +1,79 @@
+.web-shell-container {
+    background: var(--web-term-bg);
+    overflow-y: auto;
+    cursor: text;
+}
+
+.web-shell {
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+
+#UserInputRow {
+    position: relative;
+}
+
+.system-info{
+
+}
+.system-host {
+    color: var(--host-color);
+}
+.system-dir {
+    color: var(--dir-color);
+}
+.system-mark {
+    color: var(--mark-color);
+}
+
+#WebTerminalInput {
+    position: absolute;
+    width: 1px;
+    opacity: 0;
+    outline: none;
+}
+
+.cursor-position {
+    position: relative;
+    display: inline-flex;
+    vertical-align: text-top;
+}
+
+.cursor-char {
+    display: flex;
+    align-items: center;
+    width: 6px;
+    height: calc(var(--font-size));
+    vertical-align: text-top;
+    background: var(--cursor-color);
+}
+
+.shell-row {
+    padding: 0 5px;
+    color: var(--primary-color);
+    font-size: var(--font-size);
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.log-table {
+    width: 100%;
+    border: none;
+}
+
+.log-table-head-tr {
+
+}
+
+.log-table-head-td {
+
+}
+
+.log-table-tr {
+
+}
+
+.log-table-td {
+
+}

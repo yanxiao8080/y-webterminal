@@ -1,0 +1,38 @@
+{
+  "name": "y-webterminal",
+  "version": "1.0.2",
+  "description": "web终端",
+  "main": "dist/index.js",
+  "typings": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "终端",
+    "web-terminal",
+    "控制台",
+    "命令行"
+  ],
+  "author": "yanxiaos",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.6.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-lint": "^4.5.1",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "mitt": "^3.0.1",
+    "nanoid": "^5.0.1"
+  }
+}

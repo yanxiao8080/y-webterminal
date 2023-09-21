@@ -1,0 +1,10 @@
+
+.dark {
+    --web-term-bg: #1E1E1E;
+    --primary-color: #ffffff;
+    --font-size: 12px;
+    --cursor-color: rgba(173, 173, 173, 0.6);
+    --host-color: --primary-color;
+    --dir-color: --primary-color;
+    --mark-color: --primary-color;
+}
