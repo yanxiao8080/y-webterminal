@@ -40,6 +40,10 @@ export type Events = {
   focus: void;
   blur: void;
   quit: void;
+  keydown: {
+    event: KeyboardEvent,
+    stop: () => void;
+  };
 }
 
 export enum WidgetType {

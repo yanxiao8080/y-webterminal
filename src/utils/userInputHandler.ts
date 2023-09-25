@@ -79,8 +79,14 @@ export default class UserInputHandler {
     }
   }
 
-  onkeydown(e: any) {
+  onkeydown(e: KeyboardEvent) {
     // console.log("onkeydown", e.keyCode, e)
+    let stop = false;
+    this.webTerminal.emitter.emit("keydown", {
+      event: e,
+      stop: () => (stop = true)
+    })
+    if(stop) return;
     switch (e.keyCode) {
       case 13:
       case 100:

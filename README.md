@@ -6,21 +6,21 @@ npm install y-webterminal
 
 ## 概念
 
-##### WebTerminal
+#### WebTerminal
 
 可通过WebTerminal类创建终端、写入日志、监听用户输入。
 
-##### widget部件
+#### widget部件
 
 向终端写入的每一行日志都是通过widget创建的，不同的widget输出不同。例如调用writeln方法使用的是weblog部件，用户输入使用的是userInput部件。内置的部件还有tablelog，他可以输出网格日志，当用户执行 ls 命令输出当前文件夹下所有文件信息时，使用tablelog很合适。当widget不满足要求时，开发者也可以自己拓展新的widget。
 
-##### systemInfo
+#### systemInfo 
 
 系统信息，由 `username`、`host`、`dir`、`mark` 构成，拼接后如 `user@localhost ~ #  `
 
 ## 示例
 
-##### 初始化
+#### 初始化
 
 ```vue
 <template>
@@ -70,7 +70,7 @@ onMounted(() => {
 
 ```
 
-##### 监听回车，与服务器交互并输出日志
+#### 监听回车，与服务器交互并输出日志
 
 ```typescript
 webTerminal.on("enter", function ({command, onQuit, offQuit}) {
@@ -98,7 +98,7 @@ webTerminal.on("enter", function ({command, onQuit, offQuit}) {
 })
 ```
 
-##### 执行任务期间强制退出
+#### 执行任务期间强制退出
 
 ```typescript
 // 1. 在回车事件中监听退出事件
@@ -123,7 +123,7 @@ webTerminal.on("quit" function() {
 })
 ```
 
-##### 监听用户输入tab自动补齐命令
+#### 监听用户输入tab自动补齐命令
 
 ```typescript
 webTerminal.on("tabulator", function (command) {
@@ -140,7 +140,7 @@ webTerminal.on("tabulator", function (command) {
 
 ## 写入
 
-##### 追加
+#### 追加
 
 ```typescript
 // 写入一行文本日志
@@ -155,7 +155,7 @@ tableLog.set([
 webTerminal.writeWidget(tableLog)
 ```
 
-##### 查询
+#### 查询
 
 ```typescript
 // 通过下标查询最后一行widget部件
@@ -164,7 +164,7 @@ const row = webTerminal.getRow(webTerminal.logs.length - 1)
 const row = webTerminal.getRow(id)
 ```
 
-##### 修改
+#### 修改
 
 ```typescript
 if(row.type === WidgetType.weblog){
@@ -172,7 +172,7 @@ if(row.type === WidgetType.weblog){
 }
 ```
 
-##### 删除
+#### 删除
 
 ```typescript
 // 通过下标或id删除
@@ -182,15 +182,15 @@ webTerminal.deleteRow(id)
 
 ## API
 
-WebTerminal
+WebTerminal 
 
-##### 属性
+#### 属性
 
 - systemInfo 系统信息
 - logs 所有日志
 - on 监听用户输入事件
 
-##### 构造函数
+#### 构造函数
 
 ```typescript
 constructor({theme, systemInfo}: Options);
@@ -199,7 +199,7 @@ constructor({theme, systemInfo}: Options);
 - theme 使用的主题
 - systemInfo 系统信息，由 `username`、`host`、`dir`、`mark` 构成，拼接后如 `user@localhost ~ #  `
 
-##### render
+#### render
 
 渲染终端
 
@@ -207,7 +207,7 @@ constructor({theme, systemInfo}: Options);
 render(el: HTMLElement);
 ```
 
-##### writeln
+#### writeln
 
 写入文本并换行
 
@@ -219,7 +219,7 @@ writeln(text: string, id?: string): WebLog;
 - id 记录id，可通过id查找这一行
 - return 返回WebLog对象
 
-##### writeWidget
+#### writeWidget
 
 写入一个widget
 
@@ -229,7 +229,7 @@ writeWidget(widget: WidgetInter<unknown>);
 
 - widget 创建的widget对象，继承至WidgetInter
 
-##### writeHelp
+#### writeHelp
 
 向用户输入行下面写入输入提示，例如用户按tab键获取输入提示
 
@@ -239,7 +239,7 @@ writeHelp(widget: WidgetInter<unknown>)
 
 - widget 创建的widget对象，继承至WidgetInter
 
-###### clearHelpWidget
+#### clearHelpWidget
 
 清空输入提示
 
@@ -247,7 +247,7 @@ writeHelp(widget: WidgetInter<unknown>)
 clearHelpWidget()
 ```
 
-##### getRow
+#### getRow
 
 获取一行日志
 
@@ -258,7 +258,7 @@ getRow(cursor: number | string): WidgetInter<unknown> | null;
 - cursor 下标或id，当cursor为number类型时按下标查询，当cursor为string类型时按id查询
 - 返回查到的 widget 或 null
 
-##### deleteRow
+#### deleteRow
 
 删除一行日志
 
@@ -268,7 +268,7 @@ deleteRow(cursor: number | string)
 
 - cursor 下标或id，当cursor为number类型时按下标查询，当cursor为string类型时按id查询
 
-##### setSystemInfo
+#### setSystemInfo
 
 设置系统信息
 
@@ -276,7 +276,7 @@ deleteRow(cursor: number | string)
 setSystemInfo(systemInfo: Partial<SystemInfo>)
 ```
 
-##### setUserInput
+#### setUserInput
 
 设置用户输入框的内容
 
@@ -286,19 +286,19 @@ setUserInput(command: string)
 
 - command 输入的内容
 
-##### hiddenUserRow
+#### hiddenUserRow
 
 隐藏用户输入行，在回车后会自动隐藏
 
-##### showUserRow
+#### showUserRow
 
 显示用户输入行
 
-##### focus
+#### focus
 
 使终端获取焦点
 
-##### setTheme
+#### setTheme
 
 设置主题，前提是先引入对应的主题文件
 
@@ -310,23 +310,23 @@ setTheme(theme: string)
 
 事件系统使用`mitt`，事件类型及参数参考下方 `Events`
 
-##### change
+#### change
 
 用户输入的内容发生变化时触发，参数：输入的值。
 
-##### focus
+#### focus
 
 获取焦点时触发
 
-##### blur
+#### blur
 
 失去焦点时触发
 
-##### quit
+#### quit
 
 用户输入 `ctrl + c` 时触发，用来退出当前任务
 
-##### enter
+#### enter
 
 用户输入回车执行命令时触发，参数 `{ command, onQuit, offQuit}`
 
@@ -334,11 +334,18 @@ setTheme(theme: string)
 - onQuit 监听退出事件
 - offQuit 取消监听退出，如果在enter事件中调用了onQuit方法，记得在合适的时机取消监听，否则多次enter事件重复监听退出事件
 
-##### tabulator
+#### tabulator
 
 用户输入 `tab` 制表符，参数command
 
 - command 输入的命令
+
+#### keydown
+
+键盘按下事件，参数 `{ event, stop}`
+
+- event 事件参数
+- stop 调用stop方法，如果是控制键（例如：回车、删除、tab、上下左右等），y-webterminal将不会处理
 
 ## 类型
 
@@ -368,6 +375,10 @@ export type Events = {
   focus: void;
   blur: void;
   quit: void;
+  keydown: {
+    event: KeyboardEvent,
+    stop: () => void;
+  };
 }
 
 export enum WidgetType {
@@ -398,7 +409,7 @@ const webTerminal = new WebTerminal({theme: "dark"});
 webTerminal.setTheme("light");
 ````
 
-##### 自定义主题
+#### 自定义主题
 
 1. 创建myDark.css文件并引入
 2. 在myDark.css文件中定义样式变量
@@ -438,7 +449,7 @@ const webTerminal = new WebTerminal({theme: "my-dark"});
 - tableLog 以表格的形式输出日志
 - listLog 以列表的形式输出日志
 
-##### webLog部件的使用
+#### webLog部件的使用
 
 ```typescript
 // 直接调用
@@ -455,7 +466,7 @@ set方法：
 set(value: string)
 ```
 
-##### tablelog部件的使用
+#### tablelog部件的使用
 
 ```typescript
 // 创建widget
@@ -490,7 +501,7 @@ set(value: Array<Array<keyof any>>): void;
 set(value: Array<Record<string, keyof any>>, columns: Array<Column>): void;
 ```
 
-###### listLog部件的使用
+#### listLog部件的使用
 
 ```typescript
 const listLog = new ListLog()
@@ -513,7 +524,7 @@ set方法：
 set(value: Array<string | {value: string, class?: string, style?: string}>)
 ```
 
-##### 拓展
+#### 拓展
 
 当widget不满足要求时，或开发者想拓展新的widget时，可通过继承WidgetInter抽象类来开发自己的widget，所有widget都是继承至WidgetInter
 
