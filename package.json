@@ -1,7 +1,7 @@
 {
   "name": "y-webterminal",
-  "version": "1.0.2",
-  "description": "web终端",
+  "version": "1.0.3",
+  "description": "web终端，在前端实现一个终端，与服务器进行交互。",
   "main": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "files": [

@@ -336,7 +336,7 @@ setTheme(theme: string)
 
 ##### tabulator
 
-用户输入 `tab` 制表符
+用户输入 `tab` 制表符，参数command
 
 - command 输入的命令
 
@@ -401,7 +401,7 @@ webTerminal.setTheme("light");
 ##### 自定义主题
 
 1. 创建myDark.css文件并引入
-2. 在主题文件中定义样式变量
+2. 在myDark.css文件中定义样式变量
 
 ```css
 // my-dark 为主题名
@@ -474,6 +474,7 @@ tableLog.set([
   {prop: "name", label: "姓名"},
   {prop: "address", label: "地区", align: "right"}
 ]);
+webTerminal.writeWidget(tableLog);
 ```
 
 set方法：
@@ -498,9 +499,9 @@ listLog.set([
   "index.html", 
   "index.ts", 
   {
-    value: "static.ts",
+    value: "static",
   	style: "color: red"
-	}
+  }
 ])
 webTerminal.writeHelp(listLog)
 ```
@@ -559,7 +560,7 @@ export default abstract class WidgetInter<S> {
     }
   }
 
-  // 每次插入或om节点都会调用render函数，它应该返回一个字符串。当innerType为InnerType.html时，可以返回html字符串。
+  // 每次插入dom节点都会调用render函数，它应该返回一个字符串。当innerType为InnerType.html时，可以返回html字符串。
   abstract render(): string;
 
   // 当dom节点插入到文本后调用onMount，此时可以访问rowEl
