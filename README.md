@@ -1,3 +1,9 @@
+![](https://img1.imgtp.com/2023/09/25/5a9KoUaQ.gif)
+
+[使用文档](https://juejin.cn/post/7280844372169490493)
+
+[github](https://github.com/yanxiao8080/y-webterminal/)
+
 ## 安装
 
 ```shell
