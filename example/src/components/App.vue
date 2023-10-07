@@ -20,6 +20,7 @@ onMounted(() => {
 
 webTerminal.on("enter", ({command}) => {
   console.log("enter", command)
+  webTerminal.showUserRow()
 })
 
 

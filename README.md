@@ -4,10 +4,22 @@
 
 [github](https://github.com/yanxiao8080/y-webterminal/)
 
+[演示](https://play.vuejs.org/#eNq9Vltv2zYU/iuEgqFOEElOg3aFmgTYhjx0wC7IOuxFL5RE2YxpUiAp21ng/96PlCjLtzwVjQHHOpfvXL5zKL5GvzRNsmpZlEV3ptS8scQw2zZEUDm7zyNr8ughl3zZKG3JK9GsviZK/qFaaVlFtqTWakneAeHdYJVHL/GaFZbpJZdU5FEuc1kqaRzAf6z42ivgfU/WXFZqnYzsP+/MIXXGT6yGJUJPLo90HuieSLYeQ09ec0mInbMly5BPRfXCpbH1/kP6k8kluX8g3nYEl2gmK6Ynu+jJioqWwbkDGNsqOckjBjSdR9dk8lqq5ZLKartDdukqwRKhZmPT3hCA+8HNXK3/NUw/qbUrt4t4l3bkgAo8WLZsBLUMT4TcVXxFeAWuRih55Nq1k6EG8HiXwhZOd+kIAY/Gvgj382KE0DWFV3aekQ/Tn0AKIXPGZ3Ob3U6nzQaCbS4T11lvSkjsSI8di3Exy8jFzaP7eEenbDRfUv0Sl0ooDXXt/wZ1raSNDf8ffN289/CdvGy1UTp46VlBJzc/316T3dc0+Xg5mM+VscH4IOZgU/EB75wJRIvzNq5w4VrREXxcek3d52zp72/c57uU/unHl47iXbVmzoSAXFrKJdOhFQUtFzON/aoysqJ6steakKxaMV0LtY5fMkJbq3pxV3BGLNvY41ghQj+UN9N+KgnBwMb9bI7Fhdq4tnIJSgqlsdIxRAH4wi3ZF9m0FpsWsBtluOVKot0M+8FXbMjDvBhsTcxlrWDcDUEvc50PCH3nutJ3lLjKRx7g4aTDwM+BvSPlpMOOrd4DhY3OQV/fcXG0wInUWlecU1jVZGTaP4T2DoOoGlpyC6aChWqtAOUZwUm6608/rSHImx11ioobHEGA5dKhxbVgIeIBl3v45ZwOrTuEKIQqFz1GekWxojLmaJ/JSOnP3c9X6V6RH4ciQ8iSinLStXZYy8swtunVXmYBDMNsORxjH7Eb3xg9DWN4tBHjxR5ow8HvFkqPhpFWlR/eKfkwJLrH/t52hixHx8lhIYFiLENcaEYXWAz3D5m71+6gW2uKiehUTjDkiHdYbGkh2Pll7DbtYDgGP+wprWLrKTynrE4rzzkd2HOsHJRHMzKar+fWWF67tmEoJOg0lmp34jjlqbHpGwuEvjXue1dcCPlATEOHyX9rOntqY92N06fwPvVvev82jq6j7jqFFW+SZ6MkrmgeOe8VuJllIdbRlcvdeubWNiZL01Y2i1mC+0a6Z5QKXqS4fbFNMhOqwNXjGZAOD4lsEd8aNKjms4PoAGq4YPqvxu31fhaYI7X+3cusbtl1kJdzVi5OyJ/Npsv1b81wHK8YbkZBB05mzHbqx3/+xFKNlEtVtQLWbyifmD/kkGNn9is2EGmP7Hy2X3wzQcZX87jBOJhQlEvUd8Pb5xHuuL+9Ufou3dvkduji9hs9G9ES)
+
 ## 安装
+
+#### 使用npm
 
 ```shell
 npm install y-webterminal
+```
+
+#### 使用unpkg
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/y-webterminal/style/index.css">
+<link rel="stylesheet" href="https://unpkg.com/y-webterminal/style/dark.css">
+<script src="https://unpkg.com/y-webterminal/lib/index.js"></script>
 ```
 
 ## 概念
@@ -31,7 +43,7 @@ npm install y-webterminal
 ```vue
 <template>
   <div class="container">
-		<!-- 为终端准备一个容器 -->
+	<!-- 为终端准备一个容器 -->
     <div id="webTerminal"></div>
   </div>
 </template>
