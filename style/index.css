@@ -29,6 +29,7 @@
 
 #WebTerminalInput {
     position: absolute;
+    top: 0;
     width: 1px;
     opacity: 0;
     outline: none;
@@ -37,14 +38,15 @@
 .cursor-position {
     position: relative;
     display: inline-flex;
-    vertical-align: text-top;
+    height: 100%;
 }
 
 .cursor-char {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    /*align-items: center;*/
     width: 6px;
     height: calc(var(--font-size));
+    /*height: 100%;*/
     vertical-align: text-top;
     background: var(--cursor-color);
 }

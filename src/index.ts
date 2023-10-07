@@ -49,7 +49,6 @@ export type Events = {
 export enum WidgetType {
   userInput,
   weblog,
-  progress,
   table,
   list
 }

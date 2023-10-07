@@ -6,43 +6,43 @@ import WebLog from "../widget/webLog";
 import {Events, Options, SystemInfo} from "../index";
 
 export default class WebTerminal {
-  public emitter: Emitter<Events> = mitt<Events>()
+  public emitter: Emitter<Events> = mitt<Events>();
 
-  on = this.emitter.on
+  on = this.emitter.on;
 
   systemInfo: SystemInfo = {
     username: "user",
     host: "@localhost",
     dir: "~",
     mark: "#"
-  }
+  };
 
   logs: Array<WidgetInter<unknown>> = [];
 
-  helpWidgetList: Array<WidgetInter<unknown>> = []
+  helpWidgetList: Array<WidgetInter<unknown>> = [];
 
   private readonly renderHandler: Render;
 
   private userHandler: UserInputHandler;
 
-  constructor(public options: Options) {
-    this.renderHandler = new Render(options);
+  constructor(public options: Options = {}) {
+    this.renderHandler = new Render(this.options);
     this.userHandler = new UserInputHandler(this, this.renderHandler);
-    options.systemInfo && this.setSystemInfo(options.systemInfo);
+    this.options.systemInfo && this.setSystemInfo(this.options.systemInfo);
   }
 
   render(el: HTMLElement) {
-    this.renderHandler.render(el)
-    this.userHandler.setUserRow(el)
+    this.renderHandler.render(el);
+    this.userHandler.setUserRow(el);
     this.logs.forEach((widget) => {
       this.renderHandler.appendRow(widget);
-    })
+    });
   }
 
   // 写入并换行
   writeln(text: string, id?: string) {
     const weblog = new WebLog(id);
-    weblog.set(text)
+    weblog.set(text);
     this.logs.push(weblog);
     this.renderHandler.appendRow(weblog);
     return weblog;
@@ -54,13 +54,13 @@ export default class WebTerminal {
   }
 
   writeHelp(widget: WidgetInter<unknown>) {
-    this.helpWidgetList.push(widget)
+    this.helpWidgetList.push(widget);
     this.renderHandler.appendHelp(widget);
   }
 
   clearHelpWidget() {
-    this.helpWidgetList.forEach((widget) => widget.rowEl.remove())
-    this.helpWidgetList = []
+    this.helpWidgetList.forEach((widget) => widget.rowEl.remove());
+    this.helpWidgetList = [];
   }
 
   // 获取指定行文本对象
@@ -74,7 +74,7 @@ export default class WebTerminal {
 
   deleteRow(cursor: number | string) {
     if (typeof cursor === "number") {
-      const widget = this.logs[cursor]
+      const widget = this.logs[cursor];
       if (this.logs[cursor]){
         this.logs.splice(cursor, 1);
         widget.rowEl?.remove();
@@ -94,7 +94,7 @@ export default class WebTerminal {
   }
 
   setUserInput(command: string) {
-    this.userHandler.setUserInput(command)
+    this.userHandler.setUserInput(command);
   }
 
   hiddenUserRow() {
@@ -107,10 +107,10 @@ export default class WebTerminal {
   }
 
   focus() {
-    this.userHandler.focus()
+    this.userHandler.focus();
   }
 
   setTheme(theme: string) {
-    this.renderHandler.setTheme(theme)
+    this.renderHandler.setTheme(theme);
   }
 }

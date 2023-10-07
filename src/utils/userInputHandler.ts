@@ -69,10 +69,14 @@ export default class UserInputHandler {
     const cursorText = this.inputTextArr.slice(this.cursor, this.cursor + 1)
     const afterText = this.inputTextArr.slice(this.cursor + 1, this.inputTextArr.length)
     this.renderHandler.beforeText!.innerText = beforeText.join("")
-    this.renderHandler.cursorChar!.innerText = cursorText.join("")
+    if(cursorText[0] === " "){
+      this.renderHandler.cursorChar!.innerHTML = "&nbsp;"
+    } else {
+      this.renderHandler.cursorChar!.innerText = cursorText.join("")
+    }
     this.renderHandler.afterText!.innerText = afterText.join("")
     // 当光标存在选中的字符时，将光标宽度设为字符宽度
-    if (cursorText.length && this.renderHandler.cursorChar) {
+    if (cursorText.length && cursorText[0] !== " " && this.renderHandler.cursorChar) {
       this.renderHandler.cursorChar.style.width = "auto";
     } else if(!cursorText.length && this.renderHandler.cursorChar) {
       this.renderHandler.cursorChar.style.width = "";
@@ -175,7 +179,6 @@ export default class UserInputHandler {
   }
 
   leftArrow() {
-    console.log("leftArrow", this.cursor)
     if (this.cursor < 1) return;
     this.cursor--;
     this.updateUserText();

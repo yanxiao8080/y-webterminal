@@ -48,9 +48,9 @@ npm install y-webterminal
 <script setup lang="ts">
 import {WebTerminal} from "y-webterminal";
 // 引入样式文件和需要的主题文件
-import "y-webterminal/dis/style/index.css";
-import "y-webterminal/dis/style/dark.css";
-import "y-webterminal/dis/style/light.css";
+import "y-webterminal/style/index.css";
+import "y-webterminal/style/dark.css";
+import "y-webterminal/style/light.css";
 
 // 创建应用实例
 const webTerminal = new WebTerminal({
@@ -406,9 +406,9 @@ export enum InnerType {
 
 ````typescript
 // 引入样式文件和需要的主题文件
-import "y-webterminal/dist/style/index.css";
-import "y-webterminal/dist/style/dark.css";
-import "y-webterminal/dist/style/light.css";
+import "y-webterminal/style/index.css";
+import "y-webterminal/style/dark.css";
+import "y-webterminal/style/light.css";
 // 初始化时指定主题
 const webTerminal = new WebTerminal({theme: "dark"});
 // 后续修改主题
@@ -442,7 +442,7 @@ webTerminal.setTheme("light");
 
 ```typescript
 // 引入样式文件和自定义主题文件
-import "y-webterminal/src/style/index.css";
+import "y-webterminal/style/index.css";
 import "@/style/myDark.css";
 // 指定主题
 const webTerminal = new WebTerminal({theme: "my-dark"});
