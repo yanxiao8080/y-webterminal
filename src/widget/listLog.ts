@@ -12,6 +12,7 @@ export default class ListLog extends WidgetInter<Array<string | {value: string, 
   }
 
   render(): string {
+    if (!this.value) return `<div class="list-log"></div>`
     const list = this.value.map((item) => {
       if(CheckType.isObject(item)) {
         return `<span class="${item.class}" style="${item.style}">${item.value}</span>`
@@ -23,21 +24,22 @@ export default class ListLog extends WidgetInter<Array<string | {value: string, 
   }
 
   onMount() {
-    const spanList = this.rowEl.children[0].children
-    let maxWidth = 0
-    for (let idx=0;idx<spanList.length;idx++){
-      const span = spanList.item(idx)
-      const {width} = span.getBoundingClientRect()
-      console.log(width)
-      if(width > maxWidth) maxWidth = width;
+    if (!this.rowEl) return;
+    const spanList = this.rowEl.children[0].children;
+    let maxWidth = 0;
+    for (let idx=0;idx<spanList.length;idx++) {
+      const span = spanList.item(idx);
+      if (!span) continue;
+      const {width} = span.getBoundingClientRect();
+      if (width > maxWidth) maxWidth = width;
     }
     if(maxWidth > 0) {
-      for (let idx=0;idx<spanList.length;idx++){
-        const span = spanList.item(idx)
-        const style = span.getAttribute("style")
-        span.setAttribute("style",  `width: ${Math.round(maxWidth)}px;` + style)
+      for (let idx=0;idx<spanList.length;idx++) {
+        const span = spanList.item(idx);
+        if (!span) continue;
+        const style = span.getAttribute("style");
+        span.setAttribute("style",  `width: ${Math.round(maxWidth)}px;` + style);
       }
     }
   }
-
 }

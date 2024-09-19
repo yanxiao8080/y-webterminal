@@ -1,6 +1,6 @@
 import {InnerType, Options} from "../index";
-import WidgetInter from "src/service/widgetInter";
-import UserLog from "src/widget/userLog";
+import WidgetInter from "./widgetInter";
+import UserLog from "../widget/userLog";
 
 export default class Render {
   container: HTMLElement | null = null;
@@ -171,7 +171,7 @@ export default class Render {
   }
 
   setTheme(theme: string) {
-    this.container.classList.replace(this.options.theme, theme);
+    this.container?.classList.replace(this.options.theme || "", theme);
     this.options.theme = theme;
   }
 }

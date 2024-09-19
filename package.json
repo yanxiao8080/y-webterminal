@@ -1,6 +1,6 @@
 {
   "name": "y-webterminal",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "web终端，在前端实现一个终端，与服务器进行交互。",
   "main": "dist/index.js",
   "types": "dist/types",
@@ -31,7 +31,8 @@
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-parallel-uglify-plugin": "^2.0.0"
   },
   "dependencies": {
     "mitt": "^3.0.1",

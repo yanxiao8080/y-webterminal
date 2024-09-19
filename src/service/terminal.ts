@@ -60,7 +60,7 @@ export default class WebTerminal {
   }
 
   clearHelpWidget() {
-    this.helpWidgetList.forEach((widget) => widget.rowEl.remove());
+    this.helpWidgetList.forEach((widget) => widget.rowEl?.remove());
     this.helpWidgetList = [];
   }
 
