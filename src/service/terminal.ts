@@ -4,6 +4,7 @@ import Render from "./render";
 import UserInputHandler from "./userInputHandler";
 import WebLog from "../widget/webLog";
 import {Events, Options, SystemInfo} from "../index";
+import {deepClone} from "../utils";
 
 export default class WebTerminal {
   public emitter: Emitter<Events> = mitt<Events>();
@@ -86,6 +87,16 @@ export default class WebTerminal {
         this.logs[idx].rowEl?.remove();
       }
     }
+  }
+
+  clearLogs(filter?: (widget: WidgetInter<unknown>) => boolean) {
+    let logs = deepClone(this.logs);
+    if (filter) logs = logs.filter(filter);
+    logs.forEach((widget) => {
+      widget.rowEl?.remove();
+      const idx = this.logs.findIndex((w) => w.id === widget.id)
+      if (idx !== -1) this.logs.splice(idx, 1)
+    });
   }
 
   setSystemInfo(systemInfo: Partial<SystemInfo>) {

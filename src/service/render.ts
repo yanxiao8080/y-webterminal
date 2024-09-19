@@ -1,5 +1,5 @@
 import {InnerType, Options} from "../index";
-import WidgetInter from "src/utils/widgetInter";
+import WidgetInter from "src/service/widgetInter";
 import UserLog from "src/widget/userLog";
 
 export default class Render {
@@ -75,7 +75,7 @@ export default class Render {
 
   appendUserHistory(userInput: UserLog) {
     const row = document.createElement("div");
-    row.className = "shell-row";
+    row.className = "shell-row user-history";
     const systemInfo = document.createElement("span");
     systemInfo.innerHTML = userInput.systemStr
 

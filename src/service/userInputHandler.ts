@@ -154,6 +154,7 @@ export default class UserInputHandler {
 
     const userLog = new UserLog(this.webTerminal.systemInfo);
     userLog.set(command);
+    this.webTerminal.logs.push(userLog)
     this.renderHandler.appendUserHistory(userLog);
     this.webTerminal.emitter.emit("enter", {
       command: command,

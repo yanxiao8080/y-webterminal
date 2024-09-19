@@ -1,5 +1,5 @@
-import WebTerminal from "./utils/terminal";
-import WidgetInter from "./utils/widgetInter";
+import WebTerminal from "./service/terminal";
+import WidgetInter from "./service/widgetInter";
 import UserLog from "./widget/userLog";
 import WebLog from "./widget/webLog";
 import TableLog from "./widget/tableLog";

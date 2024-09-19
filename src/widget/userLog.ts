@@ -1,4 +1,4 @@
-import WidgetInter from "../utils/widgetInter";
+import WidgetInter from "../service/widgetInter";
 import {InnerType, SystemInfo, WidgetType} from "../index";
 
 

@@ -4,7 +4,7 @@
 
 [github](https://github.com/yanxiao8080/y-webterminal/)
 
-[演示](https://play.vuejs.org/#eNq9Vltv2zYU/iuEgqFOEElOg3aFmgTYhjx0wC7IOuxFL5RE2YxpUiAp21ng/96PlCjLtzwVjQHHOpfvXL5zKL5GvzRNsmpZlEV3ptS8scQw2zZEUDm7zyNr8ughl3zZKG3JK9GsviZK/qFaaVlFtqTWakneAeHdYJVHL/GaFZbpJZdU5FEuc1kqaRzAf6z42ivgfU/WXFZqnYzsP+/MIXXGT6yGJUJPLo90HuieSLYeQ09ec0mInbMly5BPRfXCpbH1/kP6k8kluX8g3nYEl2gmK6Ynu+jJioqWwbkDGNsqOckjBjSdR9dk8lqq5ZLKartDdukqwRKhZmPT3hCA+8HNXK3/NUw/qbUrt4t4l3bkgAo8WLZsBLUMT4TcVXxFeAWuRih55Nq1k6EG8HiXwhZOd+kIAY/Gvgj382KE0DWFV3aekQ/Tn0AKIXPGZ3Ob3U6nzQaCbS4T11lvSkjsSI8di3Exy8jFzaP7eEenbDRfUv0Sl0ooDXXt/wZ1raSNDf8ffN289/CdvGy1UTp46VlBJzc/316T3dc0+Xg5mM+VscH4IOZgU/EB75wJRIvzNq5w4VrREXxcek3d52zp72/c57uU/unHl47iXbVmzoSAXFrKJdOhFQUtFzON/aoysqJ6steakKxaMV0LtY5fMkJbq3pxV3BGLNvY41ghQj+UN9N+KgnBwMb9bI7Fhdq4tnIJSgqlsdIxRAH4wi3ZF9m0FpsWsBtluOVKot0M+8FXbMjDvBhsTcxlrWDcDUEvc50PCH3nutJ3lLjKRx7g4aTDwM+BvSPlpMOOrd4DhY3OQV/fcXG0wInUWlecU1jVZGTaP4T2DoOoGlpyC6aChWqtAOUZwUm6608/rSHImx11ioobHEGA5dKhxbVgIeIBl3v45ZwOrTuEKIQqFz1GekWxojLmaJ/JSOnP3c9X6V6RH4ciQ8iSinLStXZYy8swtunVXmYBDMNsORxjH7Eb3xg9DWN4tBHjxR5ow8HvFkqPhpFWlR/eKfkwJLrH/t52hixHx8lhIYFiLENcaEYXWAz3D5m71+6gW2uKiehUTjDkiHdYbGkh2Pll7DbtYDgGP+wprWLrKTynrE4rzzkd2HOsHJRHMzKar+fWWF67tmEoJOg0lmp34jjlqbHpGwuEvjXue1dcCPlATEOHyX9rOntqY92N06fwPvVvev82jq6j7jqFFW+SZ6MkrmgeOe8VuJllIdbRlcvdeubWNiZL01Y2i1mC+0a6Z5QKXqS4fbFNMhOqwNXjGZAOD4lsEd8aNKjms4PoAGq4YPqvxu31fhaYI7X+3cusbtl1kJdzVi5OyJ/Npsv1b81wHK8YbkZBB05mzHbqx3/+xFKNlEtVtQLWbyifmD/kkGNn9is2EGmP7Hy2X3wzQcZX87jBOJhQlEvUd8Pb5xHuuL+9Ufou3dvkduji9hs9G9ES)
+[演示](https://play.vuejs.org/#eNq9Vltv2zYU/iuEgqFOYEl2g3aF6gTYhjx0wC7IOuxFL5REWYxlUiApXxb4v/ejJEryLU9FY8CxzuU7l+8ciq/eL1UVbGrmRd5Cp4pXhmhm6oqUVCwfYs/o2HuMBV9XUhnyShTLp0SKP2QtDMvIgeRKrsk7ILzrrWJv729ZYphac0HL2ItFLFIptAX4jyVfOwW8H8iWi0xug5H958EcUmv8zHJYIvTk9kzXAD0QwbZj6MlrLAgxBVuzCPlkVK1sGofGv09/MrklD4+ksR3BBYqJjKnJED3Y0LJmcG4BxrZSTGKPAU3F3pRMXlO5XlORHQZkm64sWVDK5di0MwTgcXBdyO2/mqlnubXlthEXYUsOqMCDYeuqpIbhiZBFxjeEZ+BqhBJ7tl2DDDWAx0UIWzgtwhECHrXZl/bnzQihbQrPTBGRD7NZtQMthBSMLwsT3XeCQywC29vGmBDf0u5bHv1kGZGb+ZP9NI5WWSm+pmrvp7KUCuq8+evVuRTG1/x/MDZ/38Wz8rRWWirnpZYJncx/vp+S4WsWfLztzQupjTM+idnbZLzHu2YC0eq6jS28tK1oKT4vPaf2c7X093P7+S6lf/rxpaN4W60uWFlCLgzlginXioSmq6XChmUR2VA1OWqNS1ZumMpLufX3EaG1kZ24LTgihu3MeSwXoRvL+Wz2U+eHkfW72RyLE7mzbeUClCRSYal9iBzwjV2zL6KqDXbNYVdSc8OlQLsZNoRvWJ+H3mvsjc9FLmHcDkEns513CF3n2tIHSmzlIw/wcNGh5+fE3pJy0WFgq/NAYaOTsKnvvDia4EyqjS3OKoysIjLrHlx7+0GUFU25AVPOQtamBOURwVk69KebVhfkzY5aRcY1DiHAcmHR/LxkLuIJl0f4aUH71p1CJKVMVx1GeEexosLnaJ+OSNqcvJ/vwqMiP/ZFupApLdNJ29p+LW/d2IZ3R5k5MAyz4XD0m4jt+ProqRvDs40YL3ZPG45+u1BqNIw0y5rhnZEPfaJH7B9tp8tydJycFuIoxjL4iWJ0hcWw/5C5ffH2uq2imIhWZQV9jniL+YYmJbu+jO2mnQxH74c9pZlvGgqvKbPLymtOJ/YcKwfl2YyM5uul1obntm0YCgE6taHKnjhWeWlsusYCoWuN/R6KcyEfia5oP/lvTWdHra/acfrk3qfNu755H3tTr71QYcWr4EVLgUtagxx3CtzNIhfr7NJl7z2FMZWOwrAW1WoZ4MYRHhmFJU9C3L/YDvD2fkQIMjggsNHoTM6XJ2GBUPGSqb8qu9DH4TFAcvt7IzOqZlMnTwuWri7IX/SuTfJvxXAObxguRU4HMpbMtOqnf/7ENo2Ua5nVJazfUD6z5nRDjq3Zr1g9pD2ya7L90nQRLHzVTzvMgXZF2USbbjT2sYfr7W9vlD6kex/c9108fANXrM9m)
 
 ## 安装
 
@@ -196,6 +196,12 @@ if(row.type === WidgetType.weblog){
 // 通过下标或id删除
 webTerminal.deleteRow(webTerminal.logs.length - 1)
 webTerminal.deleteRow(id)
+// 清空全部日志
+webTerminal.clearLogs()
+// 根据条件清空日志
+webTerminal.clearLogs((widget) => {
+  return widget.type !== WidgetType.userInput
+})
 ```
 
 ## API
@@ -285,6 +291,14 @@ deleteRow(cursor: number | string)
 ```
 
 - cursor 下标或id，当cursor为number类型时按下标查询，当cursor为string类型时按id查询
+
+#### clearLogs
+
+```typescript
+clearLogs(filter?: (widget: WidgetInter<unknown>) => boolean)
+```
+
+- filter 过滤函数
 
 #### setSystemInfo
 
@@ -592,7 +606,7 @@ export default abstract class WidgetInter<S> {
   // 每次插入dom节点都会调用render函数，它应该返回一个字符串。当innerType为InnerType.html时，可以返回html字符串。
   abstract render(): string;
 
-  // 当dom节点插入到文本后调用onMount，此时可以访问rowEl
+  // 当dom节点插入到文档后调用onMount，此时可以访问rowEl
   onMount() {}
 }
 
