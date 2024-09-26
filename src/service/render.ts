@@ -92,10 +92,11 @@ export default class Render {
     userInput.onMount()
   }
 
-  setUserRow(systemInfo: string = "") {
+  renderUserRow(systemInfo: string = "") {
     this.userInputRow = document.createElement("div");
     this.userInputRow.id = "UserInputRow";
     this.userInputRow.className = "shell-row";
+    if (this.options.hiddenUserInput) this.userInputRow.style.display = "none"
 
     this.systemInfoSpan = document.createElement("span");
     this.systemInfoSpan.className = "system-info"
@@ -130,25 +131,16 @@ export default class Render {
   }
 
   hiddenUserRow() {
-    if (this.systemInfoSpan && this.beforeText && this.afterText && this.cursorChar) {
-      this.userRowHidden = true;
-      this.systemInfoSpan.style.display = "none";
-      this.beforeText.style.display = "none";
-      this.afterText.style.display = "none";
-      this.cursorChar.style.display = "none";
-    }
+    if (!this.userInputRow) return
+    this.userInputRow.style.display = "none"
   }
 
   showUserRow() {
-    if (this.systemInfoSpan && this.beforeText && this.afterText && this.cursorChar) {
-      this.userRowHidden = false;
-      this.systemInfoSpan.style.display = "";
-      this.beforeText.style.display = "";
-      this.afterText.style.display = "";
-      this.cursorChar.style.display = "";
-    }
+    if (!this.userInputRow) return
+    this.userInputRow.style.display = ""
   }
 
+  // 滚动到底部
   scrollBottom() {
     queueMicrotask(() => {
       if (!this.container) return;
@@ -157,7 +149,8 @@ export default class Render {
     })
   }
 
-  clearLog() {
+  // 清理终端
+  cleanTerminal() {
     if (!this.container || !this.webTerminal || !this.userInputRow) return;
     const {top, height: containerHeight} = this.container.getBoundingClientRect()
     const {height} = this.webTerminal.getBoundingClientRect();

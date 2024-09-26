@@ -19,6 +19,7 @@ export interface Options {
   theme?: string;
   historyLength?: number;
   systemInfo?: Partial<SystemInfo>;
+  hiddenUserInput?: boolean;
 }
 
 export interface SystemInfo {

@@ -31,8 +31,8 @@ export default class UserInputHandler {
     this.renderHandler.updateSystemInfo(this.systemStr);
   }
 
-  setUserRow(el: HTMLElement) {
-    this.renderHandler.setUserRow(this.systemStr);
+  createUserRow(el: HTMLElement) {
+    this.renderHandler.renderUserRow(this.systemStr);
     el.addEventListener("click", this.focus.bind(this))
     this.renderHandler.input?.addEventListener("input", this.onInput.bind(this))
 
@@ -59,7 +59,6 @@ export default class UserInputHandler {
     this.cursor += inputs.length;
     this.renderHandler.input!.value = ""
     this.updateUserText()
-    this.renderHandler.scrollBottom()
     this.webTerminal.emitter.emit("change", this.inputTextArr.join(""))
   }
 
@@ -122,8 +121,8 @@ export default class UserInputHandler {
         this.setUserInput(this.cmdHistory.getNext());
         break;
       case 76:
-        // 清空日志
-        if(e.ctrlKey) this.clearLog()
+        // 清理终端
+        if(e.ctrlKey) this.cleanTerminal()
         break;
       case 67:
         // 退出当前任务
@@ -199,8 +198,8 @@ export default class UserInputHandler {
     this.updateUserText();
   }
 
-  clearLog() {
-    this.renderHandler.clearLog()
+  cleanTerminal() {
+    this.renderHandler.cleanTerminal()
   }
 
   quitTask() {

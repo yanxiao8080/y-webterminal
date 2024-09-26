@@ -4,6 +4,8 @@
     <div>
       <button @click="writRow">写入一行</button>
       <button @click="clearLogs">清空</button>
+      <button @click="scrollBottom">滚动到底部</button>
+      <button @click="focus">获取焦点</button>
     </div>
   </div>
 </template>
@@ -14,7 +16,7 @@ import "y-webterminal/style/index.css";
 import "y-webterminal/style/dark.css";
 import {onMounted, ref} from "vue";
 
-const webTerminal = new WebTerminal()
+const webTerminal = new WebTerminal({hiddenUserInput: false})
 
 const webTermRef = ref()
 
@@ -35,8 +37,22 @@ function clearLogs() {
 
 function writRow() {
   webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
+  webTerminal.writeln("test" + Math.random())
 }
 
+function scrollBottom() {
+  webTerminal.scrollBottom()
+}
+
+function focus() {
+  webTerminal.focus()
+}
 
 </script>
 

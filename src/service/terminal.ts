@@ -34,7 +34,7 @@ export default class WebTerminal {
 
   render(el: HTMLElement) {
     this.renderHandler.render(el);
-    this.userHandler.setUserRow(el);
+    this.userHandler.createUserRow(el);
     this.logs.forEach((widget) => {
       this.renderHandler.appendRow(widget);
     });
@@ -104,6 +104,7 @@ export default class WebTerminal {
     this.userHandler.setSystemStr(this.systemInfo);
   }
 
+  // 设置用户输入内容
   setUserInput(command: string) {
     this.userHandler.setUserInput(command);
   }
@@ -123,5 +124,10 @@ export default class WebTerminal {
 
   setTheme(theme: string) {
     this.renderHandler.setTheme(theme);
+  }
+
+  // 滚动条滚动到底部
+  scrollBottom() {
+    this.renderHandler.scrollBottom()
   }
 }

@@ -217,11 +217,13 @@ WebTerminal
 #### 构造函数
 
 ```typescript
-constructor({theme, systemInfo}: Options);
+constructor(options: Options);
 ```
 
-- theme 使用的主题
-- systemInfo 系统信息，由 `username`、`host`、`dir`、`mark` 构成，拼接后如 `user@localhost ~ #  `
+- options.theme 使用的主题
+- options.systemInfo 系统信息，由 `username`、`host`、`dir`、`mark` 构成，拼接后如 `user@localhost ~ #  `
+- options.historyLength 用户输入的历史命令最大存储条数
+- options.hiddenUserInput 初始化隐藏用户输入框
 
 #### render
 
@@ -294,6 +296,8 @@ deleteRow(cursor: number | string)
 
 #### clearLogs
 
+清空日志
+
 ```typescript
 clearLogs(filter?: (widget: WidgetInter<unknown>) => boolean)
 ```
@@ -322,20 +326,40 @@ setUserInput(command: string)
 
 隐藏用户输入行，在回车后会自动隐藏
 
+```typescript
+hiddenUserRow(): void
+```
+
 #### showUserRow
 
 显示用户输入行
 
+```typescript
+showUserRow(): void
+```
+
 #### focus
 
 使终端获取焦点
+
+```typescript
+focus(): void
+```
 
 #### setTheme
 
 设置主题，前提是先引入对应的主题文件
 
 ```typescript
-setTheme(theme: string)
+setTheme(theme: string): void
+```
+
+#### scrollBottom
+
+将滚动条滚动到底部
+
+```typescript
+scrollBottom(): void
 ```
 
 ## 事件
@@ -386,6 +410,7 @@ export interface Options {
   theme?: string;
   historyLength?: number;
   systemInfo?: Partial<SystemInfo>;
+  hiddenUserInput?: boolean;
 }
 
 export interface SystemInfo {
